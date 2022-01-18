@@ -7,12 +7,23 @@ const secret = process.env.SECRET || 'VERYSECRETROKKETWOW'
 
 const options: NextAuthOptions = {
   providers: [
-    Providers.GitHub({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
+    Providers.Credentials({
+      name: 'User and Password',
+      credentials: {
+        username: { label: 'Username', type: 'text' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials) {
+        if (credentials.username && credentials.password)
+          return {
+            username: credentials.username,
+            token: 'test12341234',
+          }
+
+        return null
+      },
     }),
   ],
-  database: process.env.DATABASE_URL,
   secret,
   session: {
     jwt: true,
@@ -21,11 +32,8 @@ const options: NextAuthOptions = {
     encode: async props => {
       const { token, secret } = props as JWTEncodeParams
       const jwtClaims = {
-        sub: (token?.id as number | string).toString(),
-        id: (token?.id as number | string).toString(),
-        image: token?.picture || token?.image,
-        name: token?.name,
-        email: token?.email,
+        name: token?.name as string,
+        token: token?.token as string,
         iat: Date.now() / 1000,
         exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
       }
@@ -50,9 +58,20 @@ const options: NextAuthOptions = {
       return Promise.resolve(session)
     },
     jwt: async (token, user) => {
-      if (user) token.id = (user as { id: string })?.id.toString()
+      if (user)
+        (token.name = user.username as string), (token.token = user.token)
 
       return Promise.resolve(token)
+    },
+    signIn: async user => {
+      if (user) return true
+
+      return false
+    },
+    async redirect(url, baseUrl) {
+      if (url.startsWith('/')) return baseUrl + url
+
+      return url.startsWith(baseUrl) ? url : baseUrl
     },
   },
   // Add custom pages for login if you need them

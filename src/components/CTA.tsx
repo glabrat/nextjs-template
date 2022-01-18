@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useQueryClient } from 'react-query'
 import { Box, Button, Link as ChakraLink, Spinner } from '@chakra-ui/react'
 import { useRouter } from 'next/dist/client/router'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
 
 import { Container } from './Container'
 
@@ -24,17 +24,29 @@ export const CTA: React.FC = () => {
       queryClient.clear()
     }
 
-    return (
-      <Box flexGrow={3} mx={2}>
-        <Button
-          width="100%"
-          variant="solid"
-          colorScheme="green"
-          onClick={() => (session ? signOutAndClearData() : signIn())}>
-          {loading ? <Spinner /> : buttonText}
-        </Button>
-      </Box>
-    )
+    if (session)
+      return (
+        <Box flexGrow={3} mx={2}>
+          <Button
+            width="100%"
+            variant="solid"
+            colorScheme="green"
+            onClick={() => signOutAndClearData()}
+          >
+            {loading ? <Spinner /> : buttonText}
+          </Button>
+        </Box>
+      )
+    else
+      return (
+        <Box flexGrow={3} mx={2}>
+          <ChakraLink href="/login" flexGrow={1} mx={2}>
+            <Button width="100%" variant="solid" colorScheme="green">
+              {loading ? <Spinner /> : buttonText}
+            </Button>
+          </ChakraLink>
+        </Box>
+      )
   }
 
   const buttonRoute: Route = useMemo<Route>(() => {
@@ -50,7 +62,8 @@ export const CTA: React.FC = () => {
       bottom="0"
       width="100%"
       maxWidth="48rem"
-      py={2}>
+      py={2}
+    >
       {renderAuthButton()}
       <ChakraLink href={buttonRoute.route} flexGrow={1} mx={2}>
         <Button width="100%" variant="outline" colorScheme="green">

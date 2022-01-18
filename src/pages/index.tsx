@@ -1,6 +1,5 @@
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
 import {
-  Avatar,
   Code,
   Link as ChakraLink,
   List,
@@ -20,13 +19,12 @@ import { Main } from '../components/Main'
 const renderFooter = (session: Session | null | undefined) => {
   if (!session || !session.user) return <Text>Not logged in</Text>
 
-  const { image = '', name = '', email = '' } = session.user
+  const { name = '' } = session.user
 
   return (
     <VStack>
-      {image && <Avatar src={image} />}
       <Text>
-        Logged in as <Code>{name}</Code> - (<Code>{email}</Code>)
+        Logged in as <Code>{name}</Code>
       </Text>
     </VStack>
   )
@@ -52,7 +50,8 @@ const renderLinks = () => (
         isExternal
         href="https://www.apollographql.com/"
         flexGrow={1}
-        mr={2}>
+        mr={2}
+      >
         Apollo GraphQL <LinkIcon />
       </ChakraLink>
     </ListItem>
@@ -62,7 +61,8 @@ const renderLinks = () => (
         isExternal
         href="https://next-auth.js.org/"
         flexGrow={1}
-        mr={2}>
+        mr={2}
+      >
         NextAuth <LinkIcon />
       </ChakraLink>
     </ListItem>
