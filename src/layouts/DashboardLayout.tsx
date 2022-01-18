@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Image } from '@chakra-ui/react'
 
 import Header from 'components/Header'
 
@@ -10,12 +10,8 @@ const DashboardLayout: React.FC<{ isLogin: boolean }> = ({
     <Flex direction={'column'} height={'100vh'} width={'100%'} bg="white">
       <Header isLogin={isLogin}>
         <Flex justify={'space-between'} width={'100%'} height={'100%'}>
-          <div>logo</div>
-          <Flex>
-            <div>icon</div>
-            <div>icon</div>
-            <div>icon</div>
-          </Flex>
+          <Image ml={8} src="/rokketlabs.svg" height={120} width={120} />
+          <Flex></Flex>
         </Flex>
       </Header>
       <Flex direction={'row'} height={'100%'}>

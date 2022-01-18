@@ -4,7 +4,7 @@ import DashboardLayout from './DashboardLayout'
 import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
-  const isLogin = false
+  const isLogin = true
 
   return (
     <AnimateSharedLayout>
