@@ -1,17 +1,18 @@
 import { AnimateSharedLayout } from 'framer-motion'
 
-import { Container } from '../components/Container'
-import { CTA } from '../components/CTA'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
+import DashboardLayout from './DashboardLayout'
+import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
+  const isLogin = false
+
   return (
     <AnimateSharedLayout>
-      <Container height="100vh">
-        {children}
-        <DarkModeSwitch />
-        <CTA />
-      </Container>
+      {isLogin ? (
+        <DashboardLayout isLogin={isLogin}>{children}</DashboardLayout>
+      ) : (
+        <LoginLayout isLogin={isLogin}>{children}</LoginLayout>
+      )}
     </AnimateSharedLayout>
   )
 }
