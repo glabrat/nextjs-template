@@ -71,7 +71,7 @@ const Login: React.FC = () => {
   )
 }
 
-const Crud: NextPage = () => {
+const LoginExample: NextPage = () => {
   const { onOpen } = useDisclosure()
 
   return (
@@ -79,7 +79,7 @@ const Crud: NextPage = () => {
       <Box py="4rem" px="4rem" minW="90vw">
         <Flex>
           <Heading as="h2" mb="0.75rem">
-            CRUD Example
+            Login Example
           </Heading>
           <Spacer />
           <Button colorScheme="green" onClick={onOpen}>
@@ -94,4 +94,4 @@ const Crud: NextPage = () => {
   )
 }
 
-export default Crud
+export default LoginExample
