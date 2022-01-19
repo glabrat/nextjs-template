@@ -1,10 +1,13 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, FlexProps } from '@chakra-ui/react'
 
-const Header: React.FC<{ isLogin: boolean }> = ({ children, isLogin }) => {
+const Header: React.FC<FlexProps & { islogin: boolean }> = props => {
+  const { islogin, children, ...rest } = props
+
   return (
     <Flex
-      bg={isLogin ? 'white' : 'grey'}
-      boxShadow={isLogin ? 'rgb(0 0 0 / 16%) 0px 3px 6px' : ''}
+      {...rest}
+      bg={islogin ? 'white' : 'grey'}
+      boxShadow={islogin ? 'rgb(0 0 0 / 16%) 0px 3px 6px' : ''}
       minH={['15vh', '18vh']}
       width={'100%'}
     >

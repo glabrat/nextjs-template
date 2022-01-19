@@ -1,17 +1,27 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
+import { MdExitToApp, MdOutlineAccountCircle } from 'react-icons/md'
+import { Box, Flex, Icon, Image } from '@chakra-ui/react'
 
+import ButtonHeader from 'components/ButtonHeader'
 import Header from 'components/Header'
 
-const DashboardLayout: React.FC<{ isLogin: boolean }> = ({
+const DashboardLayout: React.FC<{ islogin: boolean }> = ({
   children,
-  isLogin,
+  islogin,
 }) => {
   return (
     <Flex direction={'column'} height={'100vh'} width={'100%'} bg="white">
-      <Header isLogin={isLogin}>
-        <Flex justify={'space-between'} width={'100%'} height={'100%'}>
-          <Image ml={8} src="/rokketlabs.svg" height={120} width={120} />
-          <Flex></Flex>
+      <Header direction={'row'} justify={'space-between'} islogin={islogin}>
+        <Image ml={8} src="/rokketlabs.svg" height={120} width={120} />
+        <Flex>
+          <ButtonHeader
+            icon={<Icon mt={2} h={10} w={10} as={MdOutlineAccountCircle} />}
+            text="Mi cuenta"
+          ></ButtonHeader>
+          <ButtonHeader
+            icon={<Icon mt={2} h={10} w={10} as={MdExitToApp} />}
+            active
+            text="Cerrar sesión"
+          ></ButtonHeader>
         </Flex>
       </Header>
       <Flex direction={'row'} height={'100%'}>

@@ -2,7 +2,7 @@ import { Flex, Image, Text } from '@chakra-ui/react'
 
 import Header from '../components/Header'
 
-const LoginLayout: React.FC<{ isLogin: boolean }> = ({ children, isLogin }) => {
+const LoginLayout: React.FC<{ islogin: boolean }> = ({ children, islogin }) => {
   return (
     <Flex
       direction={'column'}
@@ -11,7 +11,7 @@ const LoginLayout: React.FC<{ isLogin: boolean }> = ({ children, isLogin }) => {
       height="100vh"
       bg="#eee"
     >
-      <Header isLogin={isLogin}>
+      <Header islogin={islogin}>
         <Image ml={14} src="/rokketlabs.svg" height={120} width={120} />
       </Header>
       {children}

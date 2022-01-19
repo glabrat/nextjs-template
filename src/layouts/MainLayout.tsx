@@ -4,14 +4,14 @@ import DashboardLayout from './DashboardLayout'
 import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
-  const isLogin = true
+  const islogin = true
 
   return (
     <AnimateSharedLayout>
-      {isLogin ? (
-        <DashboardLayout isLogin={isLogin}>{children}</DashboardLayout>
+      {islogin ? (
+        <DashboardLayout islogin={islogin}>{children}</DashboardLayout>
       ) : (
-        <LoginLayout isLogin={isLogin}>{children}</LoginLayout>
+        <LoginLayout islogin={islogin}>{children}</LoginLayout>
       )}
     </AnimateSharedLayout>
   )
