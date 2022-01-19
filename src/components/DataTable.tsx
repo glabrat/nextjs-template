@@ -21,11 +21,13 @@ const Head: React.FC<HeadProps> = ({ headerGroups }) => {
       {headerGroups.map(headerGroup => (
         <Tr
           {...headerGroup.getHeaderGroupProps()}
-          key={headerGroup.getHeaderGroupProps().key}>
+          key={headerGroup.getHeaderGroupProps().key}
+        >
           {headerGroup.headers.map(column => (
             <Th
               {...column.getHeaderProps(column.getSortByToggleProps())}
-              key={column.id}>
+              key={column.id}
+            >
               {column.render('Header')}
               <chakra.span pl="4">
                 {column.isSorted ? (
@@ -93,6 +95,7 @@ export const DataTable = () => {
       <Tbody {...getTableBodyProps()}>
         {rows.map(row => {
           prepareRow(row)
+          console.log(row)
 
           return (
             <Tr {...row.getRowProps()} key={row.id}>

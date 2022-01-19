@@ -30,7 +30,8 @@ export const CTA: React.FC = () => {
           width="100%"
           variant="solid"
           colorScheme="green"
-          onClick={() => (session ? signOutAndClearData() : signIn())}>
+          onClick={() => (session ? signOutAndClearData() : signIn())}
+        >
           {loading ? <Spinner /> : buttonText}
         </Button>
       </Box>
@@ -50,7 +51,8 @@ export const CTA: React.FC = () => {
       bottom="0"
       width="100%"
       maxWidth="48rem"
-      py={2}>
+      py={2}
+    >
       {renderAuthButton()}
       <ChakraLink href={buttonRoute.route} flexGrow={1} mx={2}>
         <Button width="100%" variant="outline" colorScheme="green">
@@ -60,6 +62,11 @@ export const CTA: React.FC = () => {
       <ChakraLink href="/crud" flexGrow={1} mx={2}>
         <Button width="100%" variant="outline" colorScheme="green">
           CRUD
+        </Button>
+      </ChakraLink>
+      <ChakraLink href="/login" flexGrow={1} mx={2}>
+        <Button width="100%" variant="outline" colorScheme="green">
+          Login
         </Button>
       </ChakraLink>
     </Container>
