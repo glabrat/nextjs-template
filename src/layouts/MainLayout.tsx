@@ -1,17 +1,25 @@
+import { useState } from 'react'
 import { AnimateSharedLayout } from 'framer-motion'
 
-import { Container } from '../components/Container'
-import { CTA } from '../components/CTA'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
+import DashboardLayout from './DashboardLayout'
+import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
+  const [islogin, setIslogin] = useState(true)
+
+  const handleLogout = () => {
+    setIslogin(false)
+  }
+
   return (
     <AnimateSharedLayout>
-      <Container height="100vh">
-        {children}
-        <DarkModeSwitch />
-        <CTA />
-      </Container>
+      {islogin ? (
+        <DashboardLayout handleLogout={handleLogout} islogin={islogin}>
+          {children}
+        </DashboardLayout>
+      ) : (
+        <LoginLayout islogin={islogin}>{children}</LoginLayout>
+      )}
     </AnimateSharedLayout>
   )
 }
