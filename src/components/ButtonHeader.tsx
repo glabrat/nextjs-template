@@ -4,15 +4,18 @@ interface IButtonHeader {
   text: string
   active?: boolean
   icon: IconProps
+  handleClick?: () => void
 }
 
 const ButtonHeader: React.FC<IButtonHeader> = ({
   text,
   active = false,
   icon,
+  handleClick,
 }) => {
   return (
     <Flex
+      onClick={handleClick}
       justify={'center'}
       align={'center'}
       color={active ? 'white' : 'black'}
@@ -24,11 +27,11 @@ const ButtonHeader: React.FC<IButtonHeader> = ({
       cursor={'pointer'}
       bg={active ? '#003f6d' : 'white'}
       height={'100%'}
-      width={28}
+      width={[20, 28]}
       direction={'column'}
     >
       {icon}
-      <Text fontSize={'sm'}>{text}</Text>
+      <Text fontSize={[12, 'sm']}>{text}</Text>
     </Flex>
   )
 }
