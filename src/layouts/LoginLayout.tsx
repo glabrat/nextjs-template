@@ -8,7 +8,7 @@ const LoginLayout: React.FC<{ islogin: boolean }> = ({ children, islogin }) => {
       direction={'column'}
       justify={'space-between'}
       align={'center'}
-      height="100vh"
+      minH="100vh"
       bg="#eee"
     >
       <Header islogin={islogin}>

@@ -36,7 +36,7 @@ const DashboardLayout: React.FC<{
         <Flex
           boxShadow={'rgb(0 0 0 / 16%) 0px 3px 6px'}
           height={['85vh', '82vh']}
-          width={28}
+          width={32}
         ></Flex>
         <Box height={['85vh', '82vh']} width={'100%'} overflowY={'scroll'}>
           {children}

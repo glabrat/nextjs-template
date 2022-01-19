@@ -8,7 +8,7 @@ const Header: React.FC<FlexProps & { islogin: boolean }> = props => {
       {...rest}
       bg={islogin ? 'white' : 'grey'}
       boxShadow={islogin ? 'rgb(0 0 0 / 16%) 0px 3px 6px' : ''}
-      minH={['15vh', '18vh']}
+      minH={['15vh']}
       width={'100%'}
     >
       {children}
