@@ -152,7 +152,6 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
           </FormLabel>
           <FormControl>
             <InputGroup>
-              {/* <FormLabel htmlFor="email">Correo</FormLabel> */}
               <InputLeftElement pointerEvents="none">
                 <CFaUserAlt color="gray.300" />
               </InputLeftElement>
