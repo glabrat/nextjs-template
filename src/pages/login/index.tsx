@@ -9,7 +9,7 @@ import {
   Input,
   Link as ChakraLink,
 } from '@chakra-ui/react'
-import { useLogin } from 'hooks/useLogin'
+import { useLogin } from 'hooks/useAuth'
 import { NextPage } from 'next'
 
 type LoginData = {

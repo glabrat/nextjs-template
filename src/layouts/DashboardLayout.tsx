@@ -1,6 +1,6 @@
 import { MdExitToApp, MdOutlineAccountCircle } from 'react-icons/md'
 import { Box, Flex, Icon, Image } from '@chakra-ui/react'
-import { useLogout } from 'hooks/useLogin'
+import { useLogout } from 'hooks/useAuth'
 
 import ButtonHeader from 'components/ButtonHeader'
 import Header from 'components/Header'

@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import AuthService, { LoginBody, LoginResponse } from 'services/auth'
 
 export const useLogin = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [data, setData] = useState<LoginResponse>()
-  const [error, setError] = useState<boolean>()
+  const [error, setError] = useState<boolean>(false)
   const result = { data, loading, error }
   const { handleLogin: makeLogin } = useContext(AuthContext)
   const router = useRouter()
