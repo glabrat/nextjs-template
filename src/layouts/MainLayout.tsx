@@ -1,22 +1,17 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from 'context/AuthContext'
 import { AnimateSharedLayout } from 'framer-motion'
 
 import DashboardLayout from './DashboardLayout'
 import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
-  const [islogin, setIslogin] = useState(true)
-
-  const handleLogout = () => {
-    setIslogin(false)
-  }
+  const { islogin } = useContext(AuthContext)
 
   return (
     <AnimateSharedLayout>
       {islogin ? (
-        <DashboardLayout handleLogout={handleLogout} islogin={islogin}>
-          {children}
-        </DashboardLayout>
+        <DashboardLayout islogin={islogin}>{children}</DashboardLayout>
       ) : (
         <LoginLayout islogin={islogin}>{children}</LoginLayout>
       )}
