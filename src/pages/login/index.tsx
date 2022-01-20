@@ -1,16 +1,25 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FaUserAlt } from 'react-icons/fa'
+import { LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  chakra,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
   Link as ChakraLink,
+  Stack,
 } from '@chakra-ui/react'
 import { useLogin } from 'hooks/useLogin'
 import { NextPage } from 'next'
+
+import { CartContainer } from 'components/CartContainer'
 
 type LoginData = {
   email: string
@@ -25,7 +34,13 @@ type Props = {
   setRecovery: Dispatch<SetStateAction<boolean>>
 }
 
+const CFaUserAlt = chakra(FaUserAlt)
+
 const LoginSection: React.FC<Props> = ({ setRecovery }) => {
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleShowClick = () => setShowPassword(!showPassword)
+
   const {
     formState: { errors },
     register,
@@ -44,29 +59,71 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
   if (loading) return <div>Cargando..</div>
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Stack
+        spacing={6}
+        p="1rem"
+        backgroundColor="whiteAlpha.900"
+        boxShadow="md"
+      >
         <FormControl>
-          <FormLabel htmlFor="email">Correo</FormLabel>
-          <Input variant="flushed" mb="16px" {...register('email')} />
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <CFaUserAlt color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type="email"
+              placeholder="Correo electrónico"
+              variant="flushed"
+              {...register('email')}
+            />
+          </InputGroup>
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
         <FormControl>
-          <FormLabel htmlFor="password">Contraseña</FormLabel>
-          <Input
-            variant="flushed"
-            mb="16px"
-            type="password"
-            {...register('password')}
-          />
+          <InputGroup>
+            <InputLeftElement pointerEvents="none" color="gray.300">
+              <LockIcon color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Contraseña"
+              variant="flushed"
+              {...register('password')}
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+                {!showPassword ? (
+                  <ViewOffIcon></ViewOffIcon>
+                ) : (
+                  <ViewIcon></ViewIcon>
+                )}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
-        <Button type="submit">Entrar</Button>
-      </form>
-      <ChakraLink onClick={() => setRecovery(true)}>
-        Recuperar Contraseña
-      </ChakraLink>
-    </>
+        <Stack alignSelf="center" alignContent="center" alignItems="center">
+          <Button
+            borderRadius={3}
+            type="submit"
+            variant="solid"
+            color="white"
+            bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
+            width="100px"
+          >
+            Login
+          </Button>
+          <ChakraLink
+            color="cyan.500"
+            onClick={() => setRecovery(true)}
+            alignSelf="center"
+          >
+            Recuperar Contraseña
+          </ChakraLink>
+        </Stack>
+      </Stack>
+    </form>
   )
 }
 
@@ -84,15 +141,51 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        Ingresa el correo asociado a esta cuenta
-        <FormControl>
-          <FormLabel htmlFor="email">Correo</FormLabel>
-          <Input variant="flushed" mb="16px" {...register('email')} />
-          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-        </FormControl>
-        <Button type="submit">Enviar Correo</Button>
+        <Stack
+          spacing={6}
+          p="1rem"
+          backgroundColor="whiteAlpha.900"
+          boxShadow="md"
+        >
+          <FormLabel htmlFor="password">
+            Ingresa el correo asociado a esta cuenta
+          </FormLabel>
+          <FormControl>
+            <InputGroup>
+              {/* <FormLabel htmlFor="email">Correo</FormLabel> */}
+              <InputLeftElement pointerEvents="none">
+                <CFaUserAlt color="gray.300" />
+              </InputLeftElement>
+              <Input
+                type="email"
+                placeholder="Correo electrónico"
+                variant="flushed"
+                {...register('email')}
+              />
+            </InputGroup>
+            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+          </FormControl>
+          <Stack alignSelf="center" alignContent="center" alignItems="center">
+            <Button
+              borderRadius={3}
+              type="submit"
+              variant="solid"
+              color="white"
+              bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
+              width="100px"
+            >
+              Login
+            </Button>
+            <ChakraLink
+              color="cyan.500"
+              onClick={() => setRecovery(false)}
+              alignSelf="center"
+            >
+              Volver
+            </ChakraLink>
+          </Stack>
+        </Stack>
       </form>
-      <ChakraLink onClick={() => setRecovery(false)}>Volver</ChakraLink>
     </>
   )
 }
@@ -105,7 +198,11 @@ const Login: NextPage = () => {
   if (recovery) section = <PasswordRecoverySection setRecovery={setRecovery} />
   else section = <LoginSection setRecovery={setRecovery} />
 
-  return <Box textAlign="center">{section}</Box>
+  return (
+    <Box px="4rem" minW="90vw">
+      <CartContainer>{section}</CartContainer>
+    </Box>
+  )
 }
 
 export default Login
