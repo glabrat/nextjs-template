@@ -9,6 +9,7 @@ import {
   Input,
   Link as ChakraLink,
 } from '@chakra-ui/react'
+import { useLogin } from 'hooks/useLogin'
 import { NextPage } from 'next'
 
 type LoginData = {
@@ -31,9 +32,16 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
     handleSubmit,
   } = useForm<LoginData>()
 
-  const onSubmit = async (data: LoginData) => {
-    console.log(data)
+  const {
+    handleLogin,
+    result: { loading },
+  } = useLogin()
+
+  const onSubmit = (data: LoginData) => {
+    handleLogin(data)
   }
+
+  if (loading) return <div>Cargando..</div>
 
   return (
     <>

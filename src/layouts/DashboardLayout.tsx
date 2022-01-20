@@ -1,13 +1,15 @@
 import { MdExitToApp, MdOutlineAccountCircle } from 'react-icons/md'
 import { Box, Flex, Icon, Image } from '@chakra-ui/react'
+import { useLogout } from 'hooks/useLogin'
 
 import ButtonHeader from 'components/ButtonHeader'
 import Header from 'components/Header'
 
 const DashboardLayout: React.FC<{
   islogin: boolean
-  handleLogout: () => void
-}> = ({ children, islogin, handleLogout }) => {
+}> = ({ children, islogin }) => {
+  const { handleLogout } = useLogout()
+
   return (
     <Flex direction={'column'} height={'100vh'} width={'100%'} bg="white">
       <Header direction={'row'} justify={'space-between'} islogin={islogin}>

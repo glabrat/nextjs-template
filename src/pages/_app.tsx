@@ -7,6 +7,7 @@ import { Provider } from 'next-auth/client'
 import { MainLayout } from 'layouts/MainLayout'
 import { queryClient } from 'lib/queryClient'
 
+import { AuthProvider } from '../context/AuthContext'
 import theme from '../theme'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
@@ -14,9 +15,11 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
     <Provider session={pageProps.session}>
       <QueryClientProvider client={queryClient}>
         <ChakraProvider resetCSS theme={theme}>
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
+          <AuthProvider>
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+          </AuthProvider>
         </ChakraProvider>
       </QueryClientProvider>
     </Provider>
