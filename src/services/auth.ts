@@ -4,7 +4,7 @@ export interface LoginBody {
   email: string
   password: string
 }
-/*
+
 interface Permission {
   c: string
   a: string
@@ -26,12 +26,11 @@ interface JwtPayload {
   seller_type: string // verify
 }
 
-interface LoginResponse {
+export interface LoginResponse {
   accessToken: string
   expiresIn: number
   jwtPayload: JwtPayload
 }
-*/
 
 function login(body: LoginBody): Promise<Response> {
   return fetch(URL, {
