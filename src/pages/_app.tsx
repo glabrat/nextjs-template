@@ -4,6 +4,7 @@ import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 
+import { AuthGuard } from 'components/AuthGuard'
 import { MainLayout } from 'layouts/MainLayout'
 import { queryClient } from 'lib/queryClient'
 
@@ -16,9 +17,11 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <ChakraProvider resetCSS theme={theme}>
           <AuthProvider>
-            <MainLayout>
-              <Component {...pageProps} />
-            </MainLayout>
+            <AuthGuard>
+              <MainLayout>
+                <Component {...pageProps} />
+              </MainLayout>
+            </AuthGuard>
           </AuthProvider>
         </ChakraProvider>
       </QueryClientProvider>
