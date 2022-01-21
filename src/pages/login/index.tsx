@@ -110,19 +110,10 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
         </FormControl>
         <Stack alignSelf="center" alignContent="center" alignItems="center">
           <Button
-            minW={24}
             isLoading={loading}
             loadingText="Cargando"
-            borderRadius={3}
             type="submit"
-            variant="solid"
-            color="white"
-            bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
-            _hover={{
-              bgGradient: 'linear(to-tr, #00B0FF, #40C4FF)',
-              color: 'white',
-              boxShadow: 'lg',
-            }}
+            variant="paris-primary"
           >
             Login
           </Button>
@@ -177,19 +168,7 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
             <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
           </FormControl>
           <Stack alignSelf="center" alignContent="center" alignItems="center">
-            <Button
-              borderRadius={3}
-              type="submit"
-              variant="solid"
-              color="white"
-              bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
-              minW={24}
-              _hover={{
-                bgGradient: 'linear(to-tr, #00B0FF, #40C4FF)',
-                color: 'white',
-                boxShadow: 'lg',
-              }}
-            >
+            <Button type="submit" variant="paris-primary">
               Login
             </Button>
             <ChakraLink
