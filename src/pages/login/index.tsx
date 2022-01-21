@@ -56,8 +56,6 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
     handleLogin(data)
   }
 
-  if (loading) return <div>Cargando..</div>
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack
@@ -72,6 +70,7 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
               <CFaUserAlt color="gray.300" />
             </InputLeftElement>
             <Input
+              isDisabled={loading}
               type="email"
               placeholder="Correo electrónico"
               variant="flushed"
@@ -86,13 +85,19 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
               <LockIcon color="gray.300" />
             </InputLeftElement>
             <Input
+              isDisabled={loading}
               type={showPassword ? 'text' : 'password'}
               placeholder="Contraseña"
               variant="flushed"
               {...register('password')}
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+              <Button
+                h="1.75rem"
+                size="sm"
+                isDisabled={loading}
+                onClick={handleShowClick}
+              >
                 {!showPassword ? (
                   <ViewOffIcon></ViewOffIcon>
                 ) : (
@@ -105,12 +110,19 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
         </FormControl>
         <Stack alignSelf="center" alignContent="center" alignItems="center">
           <Button
+            minW={24}
+            isLoading={loading}
+            loadingText="Cargando"
             borderRadius={3}
             type="submit"
             variant="solid"
             color="white"
             bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
-            width="100px"
+            _hover={{
+              bgGradient: 'linear(to-tr, #00B0FF, #40C4FF)',
+              color: 'white',
+              boxShadow: 'lg',
+            }}
           >
             Login
           </Button>
@@ -171,7 +183,12 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
               variant="solid"
               color="white"
               bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
-              width="100px"
+              minW={24}
+              _hover={{
+                bgGradient: 'linear(to-tr, #00B0FF, #40C4FF)',
+                color: 'white',
+                boxShadow: 'lg',
+              }}
             >
               Login
             </Button>
@@ -198,7 +215,7 @@ const Login: NextPage = () => {
   else section = <LoginSection setRecovery={setRecovery} />
 
   return (
-    <Box px="4rem" minW="90vw">
+    <Box px={[null, '4rem']} minW="90vw">
       <CartContainer>{section}</CartContainer>
     </Box>
   )
