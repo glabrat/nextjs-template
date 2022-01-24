@@ -1,49 +1,65 @@
-import { MdExitToApp, MdOutlineAccountCircle } from 'react-icons/md'
-import { Box, Flex, Icon, Image } from '@chakra-ui/react'
-import { useLogout } from 'hooks/useAuth'
+import { useState } from 'react'
+import { IoHomeOutline } from 'react-icons/io5'
+import { Flex, Heading } from '@chakra-ui/react'
 
-import ButtonHeader from 'components/ButtonHeader'
-import Header from 'components/Header'
+import ButtonSidebar from 'components/ButtonSidebar/ButtonSidebar'
 
-const DashboardLayout: React.FC<{
-  islogin: boolean
-}> = ({ children, islogin }) => {
-  const { handleLogout } = useLogout()
+const DashboardLayout: React.FC = ({ children }) => {
+  const [index, setIndex] = useState(0)
 
   return (
-    <Flex direction={'column'} height={'100vh'} width={'100%'} bg="white">
-      <Header direction={'row'} justify={'space-between'} islogin={islogin}>
-        <Image ml={8} src="/rokketlabs.svg" height={120} width={120} />
-        <Flex>
-          <ButtonHeader
-            icon={
-              <Icon
-                mt={2}
-                h={[6, 10]}
-                w={[6, 10]}
-                as={MdOutlineAccountCircle}
-              />
-            }
-            text="Mi cuenta"
-          ></ButtonHeader>
-          <ButtonHeader
-            handleClick={handleLogout}
-            icon={<Icon mt={2} h={[6, 10]} w={[6, 10]} as={MdExitToApp} />}
-            active
-            text="Cerrar sesión"
-          ></ButtonHeader>
-        </Flex>
-      </Header>
-      <Flex direction={'row'} height={'100%'}>
-        <Flex
-          boxShadow={'rgb(0 0 0 / 16%) 0px 3px 6px'}
-          height={['85vh', '82vh']}
-          width={32}
-        ></Flex>
-        <Box height={['85vh', '82vh']} width={'100%'} overflowY={'scroll'}>
-          {children}
-        </Box>
+    <Flex height={'100vh'} width={'100%'} bg="gray.50">
+      <Flex py={12} px={8} direction={'column'} width={72}>
+        <Heading
+          mb={8}
+          as="h2"
+          textTransform={'uppercase'}
+          fontWeight={600}
+          size={'xs'}
+        >
+          Rokket UI Dashboard
+        </Heading>
+        <ButtonSidebar
+          onClick={() => setIndex(0)}
+          variant={index === 0 ? 'active' : ''}
+          icon={IoHomeOutline}
+          text="Dashboard"
+        />
+        <ButtonSidebar
+          variant={index === 1 ? 'active' : ''}
+          onClick={() => setIndex(1)}
+          icon={IoHomeOutline}
+          text="Tables"
+        />
+        <ButtonSidebar
+          variant={index === 2 ? 'active' : ''}
+          onClick={() => setIndex(2)}
+          icon={IoHomeOutline}
+          text="Billing"
+        />
+
+        <ButtonSidebar
+          variant={index === 3 ? 'active' : ''}
+          onClick={() => setIndex(3)}
+          icon={IoHomeOutline}
+          text="RTL"
+        />
+        <h2>Account pages</h2>
+
+        <ButtonSidebar
+          variant={index === 4 ? 'active' : ''}
+          onClick={() => setIndex(4)}
+          icon={IoHomeOutline}
+          text="Profile"
+        />
+        <ButtonSidebar
+          variant={index === 5 ? 'active' : ''}
+          onClick={() => setIndex(5)}
+          icon={IoHomeOutline}
+          text="Sign in"
+        />
       </Flex>
+      {children}
     </Flex>
   )
 }
