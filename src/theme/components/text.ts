@@ -2,8 +2,12 @@ export const textStyles = {
   Text: {
     variants: {
       sidebar: {
-        as: 'h3',
-        fontSize: 'small',
+        fontSize: 'sm',
+        color: 'gray.400',
+        fontWeight: 'semibold',
+      },
+      sidebarActive: {
+        fontSize: 'sm',
         color: 'gray.700',
         fontWeight: 'semibold',
       },

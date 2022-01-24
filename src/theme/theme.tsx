@@ -3,6 +3,7 @@ import { extendTheme } from '@chakra-ui/react'
 import { ButtonSidebar } from './additions/ButtonSidebar/ButtonSidebar'
 import { ButtonSidebarIcon } from './additions/ButtonSidebar/ButtonSidebarIcon'
 import { buttonStyles } from './components/button'
+import { headingStyles } from './components/Heading'
 import { textStyles } from './components/text'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './foundations/colors'
@@ -16,6 +17,7 @@ const theme = extendTheme({
     ButtonSidebarIcon,
     ...buttonStyles,
     ...textStyles,
+    ...headingStyles,
   },
   colors,
   fonts,

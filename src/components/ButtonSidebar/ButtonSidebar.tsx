@@ -33,7 +33,7 @@ const ButtonSidebar: ChakraComponent<
         />
       </ButtonSidebarIcon>
 
-      <Text ml={3} variant="sidebar">
+      <Text ml={3} variant={variant === 'active' ? 'sidebarActive' : 'sidebar'}>
         {text}
       </Text>
     </Box>
