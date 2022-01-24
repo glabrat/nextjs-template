@@ -1,8 +1,12 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
+import { User } from 'context/AuthContext'
 
 import Header from '../components/Header'
 
-const LoginLayout: React.FC<{ islogin: boolean }> = ({ children, islogin }) => {
+const LoginLayout: React.FC<{ user: User | undefined }> = ({
+  children,
+  user,
+}) => {
   return (
     <Flex
       direction={'column'}
@@ -11,7 +15,7 @@ const LoginLayout: React.FC<{ islogin: boolean }> = ({ children, islogin }) => {
       minH="100vh"
       bg="#eee"
     >
-      <Header islogin={islogin} align="center">
+      <Header user={user} align="center">
         <Image ml={14} src="/rokketlabs.svg" height={120} width={120} />
       </Header>
       {children}

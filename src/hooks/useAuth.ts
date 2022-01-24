@@ -21,8 +21,7 @@ export const useLogin = () => {
       })
       .then((data: LoginResponse) => {
         setData(data)
-        sessionStorage.setItem('token', data.accessToken)
-        makeLogin()
+        makeLogin(data.accessToken)
         router.push('/dashboard')
       })
       .catch(() => {
@@ -40,7 +39,6 @@ export const useLogout = () => {
   const { handleLogout: makeLogout } = useContext(AuthContext)
 
   const handleLogout = () => {
-    sessionStorage.removeItem('token')
     makeLogout()
     router.push('/login')
   }
