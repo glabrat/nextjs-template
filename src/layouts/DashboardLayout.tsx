@@ -1,73 +1,57 @@
-import { useState } from 'react'
+import { useRef } from 'react'
+import { IoMenuOutline } from 'react-icons/io5'
 import {
-  IoBuildOutline,
-  IoDocumentOutline,
-  IoHomeOutline,
-  IoPersonOutline,
-  IoStatsChartOutline,
-  IoWalletOutline,
-} from 'react-icons/io5'
-import { Flex, Heading } from '@chakra-ui/react'
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  Flex,
+  Icon,
+  IconButton,
+  useDisclosure,
+} from '@chakra-ui/react'
 
-import ButtonSidebar from 'components/ButtonSidebar/ButtonSidebar'
+import { Sidebar } from 'components/Sidebar'
 
 const DashboardLayout: React.FC = ({ children }) => {
-  const [index, setIndex] = useState(0)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>
 
   return (
     <Flex height={'100vh'} width={'100%'} bg="gray.50">
-      <Flex px={8} direction={'column'} minW={72} overflowY="auto">
-        <Heading my={8} as="h2" variant={'sidebar'}>
-          Rokket UI Dashboard
-        </Heading>
-        <ButtonSidebar
-          mb={2}
-          onClick={() => setIndex(0)}
-          variant={index === 0 ? 'active' : ''}
-          icon={IoHomeOutline}
-          text="Dashboard"
-        />
-        <ButtonSidebar
-          mb={2}
-          variant={index === 1 ? 'active' : ''}
-          onClick={() => setIndex(1)}
-          icon={IoStatsChartOutline}
-          text="Tables"
-        />
-        <ButtonSidebar
-          mb={2}
-          variant={index === 2 ? 'active' : ''}
-          onClick={() => setIndex(2)}
-          icon={IoWalletOutline}
-          text="Billing"
-        />
+      <Box display={{ base: 'none', lg: 'flex' }}>
+        <Sidebar />
+      </Box>
 
-        <ButtonSidebar
-          mb={2}
-          variant={index === 3 ? 'active' : ''}
-          onClick={() => setIndex(3)}
-          icon={IoBuildOutline}
-          text="RTL"
+      <Flex direction={'column'} width={'100%'}>
+        <IconButton
+          display={{ lg: 'none' }}
+          ref={btnRef}
+          onClick={onOpen}
+          aria-label="Search database"
+          icon={<Icon as={IoMenuOutline} />}
         />
-        <Heading my={8} as="h2" variant={'sidebar'}>
-          Account pages
-        </Heading>
-
-        <ButtonSidebar
-          mb={2}
-          variant={index === 4 ? 'active' : ''}
-          onClick={() => setIndex(4)}
-          icon={IoPersonOutline}
-          text="Profile"
-        />
-        <ButtonSidebar
-          variant={index === 5 ? 'active' : ''}
-          onClick={() => setIndex(5)}
-          icon={IoDocumentOutline}
-          text="Sign in"
-        />
+        <Box overflow={'auto'}>{children}</Box>
       </Flex>
-      {children}
+
+      <Drawer
+        isFullHeight={false}
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent height={'90vh'} ml={4} my={'auto'} borderRadius={'lg'}>
+          <DrawerCloseButton />
+
+          <DrawerBody>
+            <Sidebar />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Flex>
   )
 }
