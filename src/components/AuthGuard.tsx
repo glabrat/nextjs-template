@@ -3,14 +3,14 @@ import { AuthContext } from 'context/AuthContext'
 import { useRouter } from 'next/router'
 
 export function AuthGuard({ children }: { children: JSX.Element }) {
-  const { islogin } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const router = useRouter()
 
   useEffect(() => {
-    if (!islogin && router.route !== '/login') router.push('/login')
-  }, [islogin, router])
+    if (!user && router.route !== '/login') router.push('/login')
+  }, [user, router])
 
-  if (islogin || router.route === '/login') return <>{children}</>
+  if (user || router.route === '/login') return <>{children}</>
 
   return null
 }
