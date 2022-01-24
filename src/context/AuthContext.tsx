@@ -33,7 +33,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   const getUser = () => {
-    if (!user) {
+    if (!user && typeof window !== 'undefined') {
       const token = sessionStorage.getItem('token')
 
       if (token) setUser({ token })
