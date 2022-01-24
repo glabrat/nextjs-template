@@ -6,6 +6,11 @@ export const headingStyles = {
         fontWeight: 600,
         fontSize: 'md',
       },
+      header: {
+        textTransform: 'capitalize',
+        fontWeight: 600,
+        fontSize: 'md',
+      },
     },
   },
 }

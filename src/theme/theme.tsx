@@ -4,6 +4,7 @@ import { ButtonSidebar } from './additions/ButtonSidebar/ButtonSidebar'
 import { ButtonSidebarIcon } from './additions/ButtonSidebar/ButtonSidebarIcon'
 import { buttonStyles } from './components/button'
 import { headingStyles } from './components/Heading'
+import { inputStyles } from './components/input'
 import { textStyles } from './components/text'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './foundations/colors'
@@ -18,6 +19,7 @@ const theme = extendTheme({
     ...buttonStyles,
     ...textStyles,
     ...headingStyles,
+    ...inputStyles,
   },
   colors,
   fonts,
