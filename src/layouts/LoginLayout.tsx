@@ -11,7 +11,7 @@ const LoginLayout: React.FC<{ islogin: boolean }> = ({ children, islogin }) => {
       minH="100vh"
       bg="#eee"
     >
-      <Header islogin={islogin}>
+      <Header islogin={islogin} align="center">
         <Image ml={14} src="/rokketlabs.svg" height={120} width={120} />
       </Header>
       {children}
