@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { IoHomeOutline } from 'react-icons/io5'
+import {
+  IoBuildOutline,
+  IoDocumentOutline,
+  IoHomeOutline,
+  IoPersonOutline,
+  IoStatsChartOutline,
+  IoWalletOutline,
+} from 'react-icons/io5'
 import { Flex, Heading } from '@chakra-ui/react'
 
 import ButtonSidebar from 'components/ButtonSidebar/ButtonSidebar'
@@ -28,20 +35,20 @@ const DashboardLayout: React.FC = ({ children }) => {
         <ButtonSidebar
           variant={index === 1 ? 'active' : ''}
           onClick={() => setIndex(1)}
-          icon={IoHomeOutline}
+          icon={IoStatsChartOutline}
           text="Tables"
         />
         <ButtonSidebar
           variant={index === 2 ? 'active' : ''}
           onClick={() => setIndex(2)}
-          icon={IoHomeOutline}
+          icon={IoWalletOutline}
           text="Billing"
         />
 
         <ButtonSidebar
           variant={index === 3 ? 'active' : ''}
           onClick={() => setIndex(3)}
-          icon={IoHomeOutline}
+          icon={IoBuildOutline}
           text="RTL"
         />
         <h2>Account pages</h2>
@@ -49,13 +56,13 @@ const DashboardLayout: React.FC = ({ children }) => {
         <ButtonSidebar
           variant={index === 4 ? 'active' : ''}
           onClick={() => setIndex(4)}
-          icon={IoHomeOutline}
+          icon={IoPersonOutline}
           text="Profile"
         />
         <ButtonSidebar
           variant={index === 5 ? 'active' : ''}
           onClick={() => setIndex(5)}
-          icon={IoHomeOutline}
+          icon={IoDocumentOutline}
           text="Sign in"
         />
       </Flex>

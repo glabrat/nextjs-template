@@ -3,13 +3,19 @@ export const ButtonSidebarIcon = {
     display: 'flex',
     justifity: 'center',
     align: 'center',
-    bg: 'white',
+
     py: 2,
     px: 2.5,
     borderRadius: 'xl',
+
+    _active: {
+      bg: 'white',
+      transition: 'all .3s ease-out',
+    },
   },
   variants: {
     active: {
+      transition: 'all .3s ease-in',
       bg: '#40C4FF',
     },
   },
