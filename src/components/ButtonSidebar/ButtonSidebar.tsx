@@ -19,7 +19,7 @@ const ButtonSidebar: ChakraComponent<
   'div',
   BoxProps & IButtonSidebar
 > = props => {
-  const { variant, children, text, icon, ...rest } = props
+  const { variant, text, icon, ...rest } = props
   const styles = useStyleConfig('ButtonSidebar', { variant })
 
   return (

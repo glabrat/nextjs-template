@@ -63,7 +63,7 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
         type: 'manual',
         message: 'El correo electrónico y/o la contraseña es/son incorrectos',
       })
-  }, [error, loading])
+  }, [error, loading, setError])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
