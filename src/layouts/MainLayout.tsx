@@ -6,14 +6,14 @@ import DashboardLayout from './DashboardLayout'
 import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
-  const { islogin } = useContext(AuthContext)
+  const { getUser } = useContext(AuthContext)
 
   return (
     <AnimateSharedLayout>
-      {islogin ? (
+      {getUser() ? (
         <DashboardLayout>{children}</DashboardLayout>
       ) : (
-        <LoginLayout islogin={islogin}>{children}</LoginLayout>
+        <LoginLayout user={getUser()}>{children}</LoginLayout>
       )}
     </AnimateSharedLayout>
   )

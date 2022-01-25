@@ -6,8 +6,6 @@ export const CartContainer: React.FC = ({ children }) => {
   return (
     <Flex
       flexDirection="column"
-      // width="100wh"
-      // height="100vh"
       justifyContent="center"
       alignItems="center"
       mt="15%"
@@ -21,10 +19,10 @@ export const CartContainer: React.FC = ({ children }) => {
       >
         <Box
           width={[
-            '90%', // 0-30em
-            '80%', // 30em-48em
-            '75%', // 48em-62em
-            '40%', // 62em+
+            '85%', // 0-30em
+            '75%', // 30em-48em
+            '70%', // 48em-62em
+            '30%', // 62em+
           ]}
           height={{
             base: '90%', // 0-48em

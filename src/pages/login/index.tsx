@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaUserAlt } from 'react-icons/fa'
 import { LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
@@ -43,18 +43,27 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
 
   const {
     formState: { errors },
+    setError,
     register,
     handleSubmit,
   } = useForm<LoginData>()
 
   const {
     handleLogin,
-    result: { loading },
+    result: { loading, error },
   } = useLogin()
 
   const onSubmit = (data: LoginData) => {
     handleLogin(data)
   }
+
+  useEffect(() => {
+    if (error && !loading)
+      setError('password', {
+        type: 'manual',
+        message: 'El correo electrónico y/o la contraseña es/son incorrectos',
+      })
+  }, [error, loading])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -64,7 +73,9 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
         backgroundColor="whiteAlpha.900"
         boxShadow="md"
       >
-        <FormControl>
+        <FormControl
+          isInvalid={error && Boolean(!!errors.password || !!errors.email)}
+        >
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <CFaUserAlt color="gray.300" />
@@ -79,7 +90,9 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
           </InputGroup>
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl>
+        <FormControl
+          isInvalid={error && Boolean(!!errors.password || !!errors.email)}
+        >
           <InputGroup>
             <InputLeftElement pointerEvents="none" color="gray.300">
               <LockIcon color="gray.300" />
