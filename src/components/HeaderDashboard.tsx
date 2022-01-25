@@ -31,8 +31,8 @@ const HeaderDashboard: React.FC = () => {
   return (
     <>
       <Flex
-        direction={{ lg: 'row' }}
-        wrap={{ base: 'wrap', lg: 'nowrap' }}
+        direction={{ md: 'row' }}
+        wrap={{ base: 'wrap', md: 'nowrap' }}
         align={'center'}
         py={{ lg: 1 }}
         px={{ lg: 8 }}
@@ -41,13 +41,15 @@ const HeaderDashboard: React.FC = () => {
         <Flex
           direction={'column'}
           justify={'center'}
-          order={{ base: 2, lg: 0 }}
-          ml={{ base: 2, lg: 0 }}
-          mt={{ base: 2, lg: 0 }}
+          order={{ base: 2, md: 0 }}
+          ml={{ base: 2, md: 0 }}
+          mt={{ base: 2, md: 0 }}
         >
           <Breadcrumb>
             <BreadcrumbItem>
-              <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              <BreadcrumbLink href="#" color="gray.400">
+                Home
+              </BreadcrumbLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
@@ -58,11 +60,11 @@ const HeaderDashboard: React.FC = () => {
             Dashboard
           </Heading>
         </Flex>
-        <Spacer display={{ base: 'none', lg: 'block' }} />
+        <Spacer display={{ base: 'none', md: 'block' }} />
         <InputGroup
-          order={{ base: 1, lg: 0 }}
-          w={{ base: '100%', lg: '48' }}
-          mt={{ base: 4, lg: 0 }}
+          order={{ base: 1, md: 0 }}
+          w={{ base: '100%', md: '48' }}
+          mt={{ base: 4, md: 0 }}
           ml={2}
           mr={4}
         >
@@ -73,13 +75,13 @@ const HeaderDashboard: React.FC = () => {
         </InputGroup>
         <IconButton
           variant={'ghost'}
-          display={{ lg: 'none' }}
+          display={{ md: 'none' }}
           ref={btnRef}
           onClick={onOpen}
           aria-label="Search database"
           icon={<Icon color={'gray.500'} as={IoMenu} />}
         />
-        <Spacer display={{ lg: 'none' }} />
+        <Spacer display={{ md: 'none' }} />
         <Icon m={2} color={'gray.500'} as={IoPerson} />
         <Button variant="ghost" color={'gray.500'}>
           Sign in
@@ -87,7 +89,7 @@ const HeaderDashboard: React.FC = () => {
         <Icon m={2} color={'gray.500'} as={IoSettings} />
         <Icon
           ml={2}
-          mr={{ base: 4, lg: 0 }}
+          mr={{ base: 4, md: 12 }}
           color={'gray.500'}
           as={IoNotifications}
         />

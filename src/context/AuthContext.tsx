@@ -15,7 +15,7 @@ export const AuthContext = React.createContext<{
 })
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [islogin, setIslogin] = useState(false)
+  const [islogin, setIslogin] = useState(true)
 
   const handleLogout = () => {
     setIslogin(false)
