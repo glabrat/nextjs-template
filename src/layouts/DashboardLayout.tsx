@@ -1,47 +1,19 @@
-import { MdExitToApp, MdOutlineAccountCircle } from 'react-icons/md'
-import { Box, Flex, Icon, Image } from '@chakra-ui/react'
-import { User } from 'context/AuthContext'
-import { useLogout } from 'hooks/useAuth'
+import { Box, Flex } from '@chakra-ui/react'
 
-import ButtonHeader from 'components/ButtonHeader'
-import Header from 'components/Header'
+import HeaderDashboard from 'components/HeaderDashboard'
+import { Sidebar } from 'components/Sidebar'
 
-const DashboardLayout: React.FC<{
-  user: User | undefined
-}> = ({ children, user }) => {
-  const { handleLogout } = useLogout()
-
+const DashboardLayout: React.FC = ({ children }) => {
   return (
-    <Flex direction={'column'} height={'100vh'} width={'100%'} bg="white">
-      <Header direction={'row'} justify={'space-between'} user={user}>
-        <Image ml={8} src="/rokketlabs.svg" height={120} width={120} />
-        <Flex>
-          <ButtonHeader
-            icon={
-              <Icon
-                mt={2}
-                h={[6, 10]}
-                w={[6, 10]}
-                as={MdOutlineAccountCircle}
-              />
-            }
-            text="Mi cuenta"
-          ></ButtonHeader>
-          <ButtonHeader
-            handleClick={handleLogout}
-            icon={<Icon mt={2} h={[6, 10]} w={[6, 10]} as={MdExitToApp} />}
-            active
-            text="Cerrar sesión"
-          ></ButtonHeader>
-        </Flex>
-      </Header>
-      <Flex direction={'row'} height={'100%'}>
-        <Flex
-          boxShadow={'rgb(0 0 0 / 16%) 0px 3px 6px'}
-          height={['85vh', '82vh']}
-          width={32}
-        ></Flex>
-        <Box height={['85vh', '82vh']} width={'100%'} overflowY={'scroll'}>
+    <Flex height={'100vh'} width={'100%'} bg="gray.50">
+      <Box display={{ base: 'none', md: 'flex' }}>
+        <Sidebar />
+      </Box>
+
+      <Flex direction={'column'} width={'100%'} overflow={'auto'}>
+        <HeaderDashboard />
+
+        <Box mx={{ lg: 8 }} m={{ base: 2, md: 0 }}>
           {children}
         </Box>
       </Flex>

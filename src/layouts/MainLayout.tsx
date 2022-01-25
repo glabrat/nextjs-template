@@ -11,7 +11,7 @@ export const MainLayout: React.FC = ({ children }) => {
   return (
     <AnimateSharedLayout>
       {getUser() ? (
-        <DashboardLayout user={getUser()}>{children}</DashboardLayout>
+        <DashboardLayout>{children}</DashboardLayout>
       ) : (
         <LoginLayout user={getUser()}>{children}</LoginLayout>
       )}

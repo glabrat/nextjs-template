@@ -9,7 +9,7 @@ import { MainLayout } from 'layouts/MainLayout'
 import { queryClient } from 'lib/queryClient'
 
 import { AuthProvider } from '../context/AuthContext'
-import theme from '../theme'
+import theme from '../theme/theme'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (

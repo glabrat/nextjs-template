@@ -21,14 +21,16 @@ export const useLogin = () => {
       })
       .then((data: LoginResponse) => {
         setData(data)
+        setLoading(false)
         makeLogin(data.accessToken)
         router.push('/dashboard')
       })
       .catch(() => {
         console.log('ocurrio un error!')
         setError(true)
+        setLoading(false)
       })
-      .finally(() => setLoading(false))
+    // .finally(() => setLoading(false))
   }
 
   return { handleLogin, result }
