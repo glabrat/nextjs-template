@@ -5,7 +5,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -18,14 +17,20 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Spacer,
   useDisclosure,
 } from '@chakra-ui/react'
+import { useLogout } from 'hooks/useAuth'
 
 import { Sidebar } from 'components/Sidebar'
 
 const HeaderDashboard: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { handleLogout } = useLogout()
   const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>
 
   return (
@@ -82,10 +87,18 @@ const HeaderDashboard: React.FC = () => {
           icon={<Icon color={'gray.500'} as={IoMenu} />}
         />
         <Spacer display={{ md: 'none' }} />
-        <Icon m={2} color={'gray.500'} as={IoPerson} />
-        <Button variant="ghost" color={'gray.500'}>
-          Sign in
-        </Button>
+
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            variant="ghost"
+            color="gray.500"
+            icon={<IoPerson />}
+          />
+          <MenuList mt={2}>
+            <MenuItem onClick={() => handleLogout()}>Cerrar sesión</MenuItem>
+          </MenuList>
+        </Menu>
         <Icon m={2} color={'gray.500'} as={IoSettings} />
         <Icon
           ml={2}

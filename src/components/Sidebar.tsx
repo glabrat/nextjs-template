@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {
   IoBuildOutline,
-  IoDocumentOutline,
   IoHomeOutline,
   IoPersonOutline,
   IoStatsChartOutline,
@@ -58,12 +57,6 @@ export const Sidebar: React.FC = () => {
         onClick={() => setIndex(4)}
         icon={IoPersonOutline}
         text="Profile"
-      />
-      <ButtonSidebar
-        variant={index === 5 ? 'active' : ''}
-        onClick={() => setIndex(5)}
-        icon={IoDocumentOutline}
-        text="Sign in"
       />
     </Flex>
   )
