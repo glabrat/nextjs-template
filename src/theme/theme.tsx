@@ -6,6 +6,7 @@ import { buttonStyles } from './components/button'
 import { headingStyles } from './components/Heading'
 import { inputStyles } from './components/input'
 import { textStyles } from './components/text'
+import { tooltipStyles } from './components/tooltip'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './foundations/colors'
 import { fonts } from './foundations/fonts'
@@ -20,6 +21,7 @@ const theme = extendTheme({
     ...textStyles,
     ...headingStyles,
     ...inputStyles,
+    ...tooltipStyles,
   },
   colors,
   fonts,
