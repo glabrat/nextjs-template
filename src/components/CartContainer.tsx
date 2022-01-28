@@ -1,8 +1,6 @@
-import { Box, Center, Flex, Stack } from '@chakra-ui/react'
+import { Box, Flex, Stack } from '@chakra-ui/react'
 
 export const CartContainer: React.FC = ({ children }) => {
-  const baseTitle = 'Rokket Labs NextJS Template'
-
   return (
     <Flex
       flexDirection="column"
@@ -30,26 +28,6 @@ export const CartContainer: React.FC = ({ children }) => {
             xl: '25%', // 80em+
           }}
         >
-          <Stack
-            spacing={4}
-            p="1px"
-            backgroundColor="whiteAlpha.900"
-            boxShadow="sm"
-          >
-            <Box padding="0px 1rem 1rem 1rem" mt="-50px">
-              <Center
-                bgGradient="linear(to-tr, #00B0FF, #40C4FF)"
-                w="100%"
-                p="4"
-                color="white"
-                mt="20px"
-                boxShadow="lg"
-                rounded="md"
-              >
-                {baseTitle}
-              </Center>
-            </Box>
-          </Stack>
           {children}
         </Box>
       </Stack>

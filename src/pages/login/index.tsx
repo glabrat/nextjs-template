@@ -69,10 +69,20 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack
         spacing={6}
-        p="1rem"
+        p="2rem"
         backgroundColor="whiteAlpha.900"
         boxShadow="md"
+        borderRadius={'0.75rem'}
       >
+        <FormLabel
+          textAlign={'center'}
+          fontSize={'1.5rem'}
+          fontWeight={600}
+          lineHeight={'2.25rem'}
+          marginBottom={'2rem'}
+        >
+          Iniciar sesión
+        </FormLabel>
         <FormControl
           isInvalid={error && Boolean(!!errors.password || !!errors.email)}
         >
@@ -128,12 +138,11 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
             type="submit"
             variant="paris-primary"
           >
-            Login
+            Ingresar
           </Button>
           <ChakraLink
-            color="cyan.500"
+            variant="paris-email-recovery"
             onClick={() => setRecovery(true)}
-            alignSelf="center"
           >
             Recuperar Contraseña
           </ChakraLink>
@@ -159,12 +168,28 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack
           spacing={6}
-          p="1rem"
+          p="2rem"
           backgroundColor="whiteAlpha.900"
           boxShadow="md"
+          borderRadius={'0.75rem'}
         >
-          <FormLabel htmlFor="password">
-            Ingresa el correo asociado a esta cuenta
+          <FormLabel
+            textAlign={'center'}
+            fontSize={'1.5rem'}
+            fontWeight={600}
+            lineHeight={'2.25rem'}
+            marginBottom={'2rem'}
+          >
+            Recuperar contraseña
+          </FormLabel>
+          <FormLabel
+            fontSize={'1.125rem'}
+            fontWeight={400}
+            lineHeight={'2.25rem'}
+            minH={'2.5rem'}
+            pl={'0.5rem'}
+          >
+            Ingrese el correo asociado a esta cuenta
           </FormLabel>
           <FormControl>
             <InputGroup>
@@ -182,12 +207,11 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
           </FormControl>
           <Stack alignSelf="center" alignContent="center" alignItems="center">
             <Button type="submit" variant="paris-primary">
-              Login
+              Ingresar
             </Button>
             <ChakraLink
-              color="cyan.500"
+              variant="paris-email-recovery"
               onClick={() => setRecovery(false)}
-              alignSelf="center"
             >
               Volver
             </ChakraLink>
