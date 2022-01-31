@@ -1,63 +1,65 @@
 import { useState } from 'react'
+import { BsBuilding } from 'react-icons/bs'
+import { FaMinusSquare } from 'react-icons/fa'
+import { FiBriefcase, FiRadio } from 'react-icons/fi'
 import {
-  IoBuildOutline,
-  IoHomeOutline,
-  IoPersonOutline,
-  IoStatsChartOutline,
-  IoWalletOutline,
-} from 'react-icons/io5'
-import { Flex, Heading } from '@chakra-ui/react'
+  MdClose,
+  MdMenu,
+  MdOutlineHelpOutline,
+  MdOutlineSettings,
+} from 'react-icons/md'
+import { Divider, Flex, VStack } from '@chakra-ui/react'
 
-import ButtonSidebar from 'components/ButtonSidebar/ButtonSidebar'
+import { ButtonSidebar } from './Dashboard/ButtonSidebar'
 
 export const Sidebar: React.FC = () => {
-  const [index, setIndex] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <Flex px={8} direction={'column'} minW={72} overflowY="auto">
-      <Heading my={8} as="h2" variant={'sidebar'}>
-        Rokket UI Dashboard
-      </Heading>
-      <ButtonSidebar
-        mb={2}
-        onClick={() => setIndex(0)}
-        variant={index === 0 ? 'active' : ''}
-        icon={IoHomeOutline}
-        text="Dashboard"
-      />
-      <ButtonSidebar
-        mb={2}
-        variant={index === 1 ? 'active' : ''}
-        onClick={() => setIndex(1)}
-        icon={IoStatsChartOutline}
-        text="Tables"
-      />
-      <ButtonSidebar
-        mb={2}
-        variant={index === 2 ? 'active' : ''}
-        onClick={() => setIndex(2)}
-        icon={IoWalletOutline}
-        text="Billing"
-      />
+    <Flex
+      direction={'column'}
+      align={'flex-start'}
+      justify={'space-between'}
+      minW={isOpen ? 56 : 16}
+      bg="#FFFFFF"
+      p={2}
+      transition="all 0.3s ease"
+    >
+      <VStack
+        w="full"
+        align={'flex-start'}
+        mt={2}
+        spacing={4}
+        direction={'column'}
+      >
+        <ButtonSidebar
+          isOpen={isOpen}
+          icon={isOpen ? MdClose : MdMenu}
+          handleClick={() => setIsOpen(!isOpen)}
+        />
+        <ButtonSidebar isOpen={isOpen} title="Locales" icon={BsBuilding} />
+        <ButtonSidebar isOpen={isOpen} title="Tiempo" icon={FaMinusSquare} />
+        <ButtonSidebar
+          isOpen={isOpen}
+          title="Visualización"
+          icon={FiBriefcase}
+        />
+        <ButtonSidebar isOpen={isOpen} title="Cobertura" icon={FiRadio} />
+      </VStack>
 
-      <ButtonSidebar
-        mb={2}
-        variant={index === 3 ? 'active' : ''}
-        onClick={() => setIndex(3)}
-        icon={IoBuildOutline}
-        text="RTL"
-      />
-      <Heading my={8} as="h2" variant={'sidebar'}>
-        Account pages
-      </Heading>
-
-      <ButtonSidebar
-        mb={2}
-        variant={index === 4 ? 'active' : ''}
-        onClick={() => setIndex(4)}
-        icon={IoPersonOutline}
-        text="Profile"
-      />
+      <VStack align={'flex-start'} spacing={4} mb={2} direction="column">
+        <Divider size="2"></Divider>
+        <ButtonSidebar
+          isOpen={isOpen}
+          title="Configuración"
+          icon={MdOutlineSettings}
+        />
+        <ButtonSidebar
+          isOpen={isOpen}
+          title="Ayuda"
+          icon={MdOutlineHelpOutline}
+        />
+      </VStack>
     </Flex>
   )
 }
