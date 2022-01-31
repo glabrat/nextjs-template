@@ -1,4 +1,4 @@
-import { ChakraComponent, Tooltip, TooltipProps } from '@chakra-ui/react'
+import { ChakraComponent, Flex, Tooltip, TooltipProps } from '@chakra-ui/react'
 
 import { IconDashboard, IconDashboardProps } from './IconDashboard'
 
@@ -8,9 +8,9 @@ export const TooltipDashboard: ChakraComponent<
 > = ({ icon, handleClick, label, ...rest }) => {
   return (
     <Tooltip {...rest} hasArrow label={label}>
-      <div>
+      <Flex align="center" justify={'center'}>
         <IconDashboard icon={icon} handleClick={handleClick} />
-      </div>
+      </Flex>
     </Tooltip>
   )
 }
