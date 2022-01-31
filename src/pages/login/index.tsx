@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, UseFormRegister } from 'react-hook-form'
 import { FaUserAlt } from 'react-icons/fa'
 import { LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import {
@@ -34,7 +34,81 @@ type Props = {
   setRecovery: Dispatch<SetStateAction<boolean>>
 }
 
+type InputProps<T> = {
+  register: UseFormRegister<T>
+  loading: boolean
+}
+
+type PasswordProps<T> = {
+  register: UseFormRegister<T>
+  loading: boolean
+  showPassword: boolean
+  handleShowClick: () => void
+}
+
 const CFaUserAlt = chakra(FaUserAlt)
+
+const UserInput: React.FC<InputProps<LoginData>> = ({ register, loading }) => {
+  return (
+    <InputGroup>
+      <InputLeftElement pointerEvents="none">
+        <CFaUserAlt color="gray.300" width="24px" height="24px" />
+      </InputLeftElement>
+      <Input
+        isDisabled={loading}
+        type="email"
+        color="gray.300"
+        borderColor="gray.300"
+        paddingLeft="56px"
+        placeholder="Correo electrónico"
+        _placeholder={{ color: 'gray.300', opacity: 1 }}
+        variant="flushed"
+        {...register('email')}
+      />
+    </InputGroup>
+  )
+}
+
+const PasswordInput: React.FC<PasswordProps<LoginData>> = ({
+  register,
+  loading,
+  showPassword,
+  handleShowClick,
+}) => {
+  return (
+    <InputGroup>
+      <InputLeftElement pointerEvents="none" color="gray.300">
+        <LockIcon color="gray.300" width="24px" height="24px" />
+      </InputLeftElement>
+      <Input
+        isDisabled={loading}
+        type={showPassword ? 'text' : 'password'}
+        placeholder="Contraseña"
+        _placeholder={{ color: 'gray.300', opacity: 1 }}
+        color="gray.300"
+        paddingLeft="56px"
+        borderColor="gray.300"
+        variant="flushed"
+        {...register('password')}
+      />
+      <InputRightElement width="4.5rem">
+        <Button
+          h="1.75rem"
+          size="sm"
+          isDisabled={loading}
+          onClick={handleShowClick}
+          color="gray.300"
+        >
+          {!showPassword ? (
+            <ViewOffIcon width="24px" height="24px"></ViewOffIcon>
+          ) : (
+            <ViewIcon width="24px" height="24px"></ViewIcon>
+          )}
+        </Button>
+      </InputRightElement>
+    </InputGroup>
+  )
+}
 
 const LoginSection: React.FC<Props> = ({ setRecovery }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -80,55 +154,25 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
           fontWeight={600}
           lineHeight={'2.25rem'}
           marginBottom={'2rem'}
+          color="#212C39"
         >
           Iniciar sesión
         </FormLabel>
         <FormControl
           isInvalid={error && Boolean(!!errors.password || !!errors.email)}
         >
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <CFaUserAlt color="gray.300" />
-            </InputLeftElement>
-            <Input
-              isDisabled={loading}
-              type="email"
-              placeholder="Correo electrónico"
-              variant="flushed"
-              {...register('email')}
-            />
-          </InputGroup>
+          <UserInput register={register} loading={loading}></UserInput>
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
         <FormControl
           isInvalid={error && Boolean(!!errors.password || !!errors.email)}
         >
-          <InputGroup>
-            <InputLeftElement pointerEvents="none" color="gray.300">
-              <LockIcon color="gray.300" />
-            </InputLeftElement>
-            <Input
-              isDisabled={loading}
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Contraseña"
-              variant="flushed"
-              {...register('password')}
-            />
-            <InputRightElement width="4.5rem">
-              <Button
-                h="1.75rem"
-                size="sm"
-                isDisabled={loading}
-                onClick={handleShowClick}
-              >
-                {!showPassword ? (
-                  <ViewOffIcon></ViewOffIcon>
-                ) : (
-                  <ViewIcon></ViewIcon>
-                )}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
+          <PasswordInput
+            register={register}
+            loading={loading}
+            showPassword={showPassword}
+            handleShowClick={handleShowClick}
+          ></PasswordInput>
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
         <Stack alignSelf="center" alignContent="center" alignItems="center">
@@ -144,7 +188,7 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
             variant="paris-email-recovery"
             onClick={() => setRecovery(true)}
           >
-            Recuperar Contraseña
+            ¿Olvidaste tu contraseña?
           </ChakraLink>
         </Stack>
       </Stack>
@@ -179,6 +223,7 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
             fontWeight={600}
             lineHeight={'2.25rem'}
             marginBottom={'2rem'}
+            color="#212C39"
           >
             Recuperar contraseña
           </FormLabel>
@@ -188,17 +233,22 @@ const PasswordRecoverySection: React.FC<Props> = ({ setRecovery }) => {
             lineHeight={'2.25rem'}
             minH={'2.5rem'}
             pl={'0.5rem'}
+            color="#212C39"
           >
             Ingrese el correo asociado a esta cuenta
           </FormLabel>
           <FormControl>
             <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <CFaUserAlt color="gray.300" />
+              <InputLeftElement pointerEvents="none" color="gray.300">
+                <CFaUserAlt color="gray.300" width="24px" height="24px" />
               </InputLeftElement>
               <Input
                 type="email"
                 placeholder="Correo electrónico"
+                _placeholder={{ color: 'gray.300', opacity: 1 }}
+                color="gray.300"
+                paddingLeft="56px"
+                borderColor="gray.300"
                 variant="flushed"
                 {...register('email')}
               />
