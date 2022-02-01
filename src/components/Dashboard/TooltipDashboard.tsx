@@ -7,7 +7,13 @@ export const TooltipDashboard: ChakraComponent<
   Omit<TooltipProps, 'children'> & IconDashboardProps
 > = ({ icon, handleClick, label, ...rest }) => {
   return (
-    <Tooltip {...rest} hasArrow label={label}>
+    <Tooltip
+      {...rest}
+      hasArrow
+      label={label}
+      backgroundColor={'blue.700'}
+      color={'white'}
+    >
       <Flex align="center" justify={'center'}>
         <IconDashboard icon={icon} handleClick={handleClick} />
       </Flex>

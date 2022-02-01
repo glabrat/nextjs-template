@@ -32,9 +32,10 @@ export const ButtonSidebar: React.FC<Props> = ({
         label={title}
         icon={icon}
         handleClick={handleClick}
+        isDisabled={isOpen}
       />
       {isOpen && (
-        <Text ml={2} fontSize={'sm'}>
+        <Text ml={2} fontSize={'sm'} color={'gray.600'}>
           {title}
         </Text>
       )}
