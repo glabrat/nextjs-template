@@ -2,9 +2,10 @@ export const buttonStyles = {
   Button: {
     variants: {
       'paris-primary': {
-        minW: 24,
-        borderRadius: 3,
-        bgGradient: 'linear(to-tr, #00B0FF, #40C4FF)',
+        minW: '7.063rem',
+        minH: '3.5rem',
+        borderRadius: '0.25rem',
+        bg: '#33BEFF',
         color: 'white',
         _hover: {
           boxShadow: 'lg',

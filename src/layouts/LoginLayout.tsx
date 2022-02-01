@@ -13,13 +13,18 @@ const LoginLayout: React.FC<{ user: User | undefined }> = ({
       justify={'space-between'}
       align={'center'}
       minH="100vh"
-      bg="#eee"
+      bg={'background'}
     >
       <Header user={user} align="center">
-        <Image ml={14} src="/rokketlabs.svg" height={120} width={120} />
+        <Image
+          src="/rokketlabs.svg"
+          height={'3.1875rem'}
+          width={'8.9375rem'}
+          marginTop={'2.5rem'}
+        />
       </Header>
       {children}
-      <Text color="#757575" paddingY={4} fontWeight={300} fontSize={'xs'}>
+      <Text color="#212C39" paddingY={4} fontWeight={400} fontSize={'xs'}>
         © Rokketlabs - 2022
       </Text>
     </Flex>
