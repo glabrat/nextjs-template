@@ -20,24 +20,23 @@ export const ButtonSidebar: React.FC<Props> = ({
 }) => {
   return (
     <Flex
+      onClick={handleClick}
       cursor={'pointer'}
-      borderRadius="sm"
+      borderRadius="md"
       p={2}
-      w={isOpen ? 'full' : ''}
+      w={isOpen ? 'full' : 10}
       direction={'row'}
       bg={isActive ? '#E1F0FF' : ''}
     >
       <TooltipDashboard
+        isDisabled={isOpen}
         placement="right"
         label={title}
         icon={icon}
-        handleClick={handleClick}
       />
-      {isOpen && (
-        <Text ml={2} fontSize={'sm'}>
-          {title}
-        </Text>
-      )}
+      <Text visibility={isOpen ? 'visible' : 'hidden'} ml={2} fontSize={'sm'}>
+        {title}
+      </Text>
     </Flex>
   )
 }
