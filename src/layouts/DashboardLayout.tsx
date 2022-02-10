@@ -1,15 +1,16 @@
-import { useContext } from 'react'
 import { BiUser } from 'react-icons/bi'
 import { MdOutlineLogout } from 'react-icons/md'
 import { VscBell } from 'react-icons/vsc'
 import { Flex, Image } from '@chakra-ui/react'
-import { AuthContext } from 'context/AuthContext'
+import { signOut } from 'next-auth/react'
 
 import { TooltipDashboard } from 'components/Dashboard/TooltipDashboard'
 import { Sidebar } from 'components/Sidebar'
 
 const DashboardLayout: React.FC = ({ children }) => {
-  const { handleLogout } = useContext(AuthContext)
+  const handleLogout = () => {
+    signOut()
+  }
 
   return (
     <Flex height={'100vh'} width={'100%'} bg="#F7FAFC">
