@@ -12,4 +12,13 @@ module.exports = {
     return config
   },
   webpackDevMiddleware: config => config,
+  redirects: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: false,
+      },
+    ]
+  },
 }

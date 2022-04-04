@@ -16,8 +16,9 @@ import {
   Link as ChakraLink,
   Stack,
 } from '@chakra-ui/react'
-import { useLogin } from 'hooks/useAuth'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/react'
 
 import { CartContainer } from 'components/CartContainer'
 
@@ -112,6 +113,9 @@ const PasswordInput: React.FC<PasswordProps<LoginData>> = ({
 
 const LoginSection: React.FC<Props> = ({ setRecovery }) => {
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setErrorStatus] = useState<boolean>(false)
+  const router = useRouter()
 
   const handleShowClick = () => setShowPassword(!showPassword)
 
@@ -122,13 +126,25 @@ const LoginSection: React.FC<Props> = ({ setRecovery }) => {
     handleSubmit,
   } = useForm<LoginData>()
 
-  const {
-    handleLogin,
-    result: { loading, error },
-  } = useLogin()
+  const onSubmit = async (data: LoginData) => {
+    setLoading(true)
 
-  const onSubmit = (data: LoginData) => {
-    handleLogin(data)
+    const response = await signIn<'credentials'>('credentials', {
+      redirect: false,
+      username: data.email,
+      password: data.password,
+    })
+
+    if (response) {
+      if (response.error) setErrorStatus(true)
+
+      if (response.ok) {
+        setErrorStatus(false)
+        router.push('/dashboard')
+      }
+    }
+
+    setLoading(false)
   }
 
   useEffect(() => {

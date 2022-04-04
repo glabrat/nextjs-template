@@ -1,11 +1,12 @@
 import { Flex, FlexProps } from '@chakra-ui/react'
-import { User } from 'context/AuthContext'
+import { useSession } from 'next-auth/react'
 
-const Header: React.FC<FlexProps & { user: User | undefined }> = props => {
-  const { user, children, ...rest } = props
+const Header: React.FC<FlexProps> = props => {
+  const { children, ...rest } = props
+  const { data: session } = useSession()
 
   return (
-    <Flex {...rest} boxShadow={user ? 'rgb(0 0 0 / 16%) 0px 3px 6px' : ''}>
+    <Flex {...rest} boxShadow={session ? 'rgb(0 0 0 / 16%) 0px 3px 6px' : ''}>
       {children}
     </Flex>
   )

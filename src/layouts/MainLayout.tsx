@@ -1,19 +1,18 @@
-import { useContext } from 'react'
-import { AuthContext } from 'context/AuthContext'
 import { AnimateSharedLayout } from 'framer-motion'
+import { useSession } from 'next-auth/react'
 
 import DashboardLayout from './DashboardLayout'
 import LoginLayout from './LoginLayout'
 
 export const MainLayout: React.FC = ({ children }) => {
-  const { getUser } = useContext(AuthContext)
+  const { data: session, status } = useSession()
 
   return (
     <AnimateSharedLayout>
-      {getUser() ? (
+      {session && status === 'authenticated' ? (
         <DashboardLayout>{children}</DashboardLayout>
       ) : (
-        <LoginLayout user={getUser()}>{children}</LoginLayout>
+        <LoginLayout>{children}</LoginLayout>
       )}
     </AnimateSharedLayout>
   )
